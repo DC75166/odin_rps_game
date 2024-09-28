@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    let numb =  Math.floor((Math.random()*100)+1);
+    let numb =  Math.floor((Math.random()*100))+1;
     console.log(numb);
     if(numb<=40){
         console.log("rock");
@@ -11,4 +11,10 @@ function getComputerChoice() {
         console.log("scissors");
     }
 }
+function getHumanChoice(){
+   let choice = prompt("Enter your choice");
+   console.log(choice);
+}
+
 getComputerChoice();
+getHumanChoice();
