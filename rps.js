@@ -1,11 +1,7 @@
-// Variables to track the score of both computer and human
-let humanScore = 0;
-let computerScore = 0;
-
 //function to randomly generate the computer choices
 function getComputerChoice(){
 
-  let random = Math.floor(Math.random()*100);
+  let random = (Math.floor(Math.random()*100));
   console.log(random);
 
   if(random>=0 && random<33){
@@ -29,15 +25,31 @@ function getHumanChoice(){
    return str;
 }
 
-// Function to play the game
-function playRound(humanChoice,computerChoice){
-    //  console.log(humanChoice);
+// Function to play the game for 5 rounds
+function playGame(){
+
+// Variables to track the score of both computer and human
+let humanScore = 0;
+let computerScore = 0;
+
+// Play 5 rounds
+for(let i=0;i<5;i++){
+  const humanSelection = getHumanChoice();
+  const computerSelection = getComputerChoice();
+  playRound(humanSelection,computerSelection);
+}
+
+// Function to play the game for 1 round
+  function playRound(humanChoice,computerChoice){
+    // console.log(humanChoice);
     
     let loss = "you loose";
     let win = "you win";
 
      if(humanChoice == computerChoice){
       console.log("Draw");
+      computerScore;
+      humanScore;
      }
 
      if(humanChoice == "rock"){
@@ -72,14 +84,30 @@ function playRound(humanChoice,computerChoice){
           computerScore++;
       }
   }
+  
+  // Checks for invalid entry
+  if(humanChoice!="rock"||humanChoice!="paper"||humanChoice!="scissors"){
+    console.log("wrong entry! You lost one chance");
+  }
 
+  //  Prints the score for each round
   console.log(`Your Score : ${humanScore}`);
   console.log(`Computer's Score : ${computerScore}`);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+// Prints the final score
+  if(`${humanScore}`>`${computerScore}`){
+    console.log("Congrats!You won the game");
+  }
+  else if(`${computerScore}`>`${humanScore}`) {
+    console.log("uh oh! Better luck next time");
+  }
+  else{
+    console.log("You guys are tied! Try Again to beat the computer");
+  }
+}
 
-// getComputerChoice();
-// getHumanChoice();
-playRound(humanSelection,computerSelection);
+playGame();
+
+
+
