@@ -1,7 +1,7 @@
 function getComputerChoice(){
 
-  var random = Math.floor(Math.random()*100);
-  console.log(random);
+  let random = Math.floor(Math.random()*100);
+  // console.log(random);
 
   if(random>=0 && random<33){
     console.log("rock");
@@ -13,6 +13,10 @@ function getComputerChoice(){
     console.log("scissors");
   }
 }
-
+function getHumanChoice(){
+   let choice = prompt("Enter your choice");
+   console.log(choice);
+}
 getComputerChoice();
+getHumanChoice();
 
