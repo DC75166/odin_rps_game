@@ -2,18 +2,14 @@
 function getComputerChoice(){
 
   let random = (Math.floor(Math.random()*100));
-  console.log(random);
 
   if(random>=0 && random<33){
-    // console.log("rock");
     return "rock";
   }
   else if(random>=33 && random<66){
-    // console.log("paper");
     return "paper";
   }
   else{
-    // console.log("scissors");
     return "scissors";
   }
 }
@@ -41,7 +37,6 @@ for(let i=0;i<5;i++){
 
 // Function to play the game for 1 round
   function playRound(humanChoice,computerChoice){
-    // console.log(humanChoice);
     
     let loss = "you loose";
     let win = "you win";
@@ -83,11 +78,6 @@ for(let i=0;i<5;i++){
           console.log(`${loss}.${computerChoice} beats ${humanChoice}`);
           computerScore++;
       }
-  }
-  
-  // Checks for invalid entry
-  if(humanChoice!="rock"||humanChoice!="paper"||humanChoice!="scissors"){
-    console.log("wrong entry! You lost one chance");
   }
 
   //  Prints the score for each round
