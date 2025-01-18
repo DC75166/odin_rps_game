@@ -5,6 +5,10 @@ function playGame() {
   let computerScore = 0;
   let humanChoice = '';
   let count = 0;
+  const result = document.querySelector('#results');
+  const hScore = document.querySelector("#hScore");
+  const cScore = document.querySelector("#cScore");
+  const body= document.querySelector("body");
 
   //function to randomly generate the computer choices
   function getComputerChoice() {
@@ -34,6 +38,9 @@ function playGame() {
         humanChoice = button.id;
         playRound(getComputerChoice(), humanChoice);
       }
+      else{
+        reset();
+      }
       count++;
     });
   })
@@ -41,14 +48,9 @@ function playGame() {
   // Function to play the game for 1 round
   function playRound(humanChoice, computerChoice) {
 
-    const result = document.querySelector('#results');
-    const hScore = document.querySelector("#hScore");
-    const cScore = document.querySelector("#cScore");
-    const reset = document.createElement("button");
-    reset.textContent = "Reset";
-
     let loss = "you loose";
     let win = "you win";
+
 
     if (humanChoice == "rock") {
       if (computerChoice == "paper") {
@@ -88,6 +90,12 @@ function playGame() {
     cScore.textContent = (`Computer's Score : ${computerScore}`);
     result.appendChild(hScore);
     result.appendChild(cScore);
+  }
+
+  function reset(){
+    result.removeChild(hScore);
+    result.removeChild(cScore);
+    body.removeChild(result);
   }
 
 }
