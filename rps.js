@@ -1,4 +1,5 @@
 
+function playGame() {
 //function to randomly generate the computer choices
 function getComputerChoice() {
 
@@ -8,30 +9,18 @@ function getComputerChoice() {
   return option[index];
 }
 
-function playGame() {
+    let humanChoice = '';
+    const buttons = document.querySelectorAll("button");
 
-  // Variables to track the score of both computer and human
-  let humanScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i <= 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-  }
-
-  function getHumanChoice() {
-    const buttons = document.querySelector("button");
-
-    buttons.foreach((button) => {
-      button.addEventListener('click', (event) => {
-        let buttonId = event.target;
-        return buttonId.id;
-      })
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        humanChoice = button.id;
+        playRound(getComputerChoice(),humanChoice);
+    });
     })
-  }
 
+    let humanScore=0;
+    let computerScore=0;
   // Function to play the game for 1 round
   function playRound(humanChoice, computerChoice) {
 
@@ -87,11 +76,11 @@ function playGame() {
     result.appendChild(hScore);
     result.appendChild(cScore);
   }
+}
   // hScore.textContent = (`Your Score : ${humanScore}`);
   // cScore.textContent = (`Computer's Score : ${computerScore}`);
   // result.appendChild(hScore);
   // result.appendChild(cScore);
-  console.log("loop ends");
-}
+  // console.log("loop ends");
 
 playGame();
