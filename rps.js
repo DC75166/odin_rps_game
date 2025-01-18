@@ -50,7 +50,12 @@ function playGame() {
 
     let loss = "you loose";
     let win = "you win";
-
+    
+    if (humanChoice == computerChoice) {
+      result.textContent = ("Draw");
+      computerScore;
+      humanScore;
+    }
 
     if (humanChoice == "rock") {
       if (computerChoice == "paper") {
