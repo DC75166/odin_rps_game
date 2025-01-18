@@ -1,12 +1,24 @@
 
 function playGame() {
+
 //function to randomly generate the computer choices
 function getComputerChoice() {
 
-  let index = (Math.floor(Math.random() * 3));
-  console.log(index);
-  let option = ['rock', 'paper', 'scissors'];
-  return option[index];
+let random = (Math.floor(Math.random()*100)+1);
+console.log(random);
+let choice = '';
+
+  if(random>=0 && random<33){
+    choice ="rock";
+  }
+  else if(random>=33 && random<66){
+    choice =  "paper";
+  }
+  else{
+    choice =  "scissors";
+  }
+  console.log(choice);
+  return choice;
 }
 
     let humanChoice = '';
@@ -17,10 +29,11 @@ function getComputerChoice() {
         humanChoice = button.id;
         playRound(getComputerChoice(),humanChoice);
     });
-    })
+  })
 
     let humanScore=0;
     let computerScore=0;
+    
   // Function to play the game for 1 round
   function playRound(humanChoice, computerChoice) {
 
@@ -77,10 +90,5 @@ function getComputerChoice() {
     result.appendChild(cScore);
   }
 }
-  // hScore.textContent = (`Your Score : ${humanScore}`);
-  // cScore.textContent = (`Computer's Score : ${computerScore}`);
-  // result.appendChild(hScore);
-  // result.appendChild(cScore);
-  // console.log("loop ends");
 
 playGame();
