@@ -1,6 +1,11 @@
 
 function playGame() {
 
+  let humanScore = 0;
+  let computerScore = 0;
+  let humanChoice = '';
+  let count = 0;
+
   //function to randomly generate the computer choices
   function getComputerChoice() {
 
@@ -21,18 +26,17 @@ function playGame() {
     return choice;
   }
 
-  let humanChoice = '';
+
   const buttons = document.querySelectorAll("button");
-  
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      humanChoice = button.id;
-      playRound(getComputerChoice(), humanChoice);
+      if (count < 5) {
+        humanChoice = button.id;
+        playRound(getComputerChoice(), humanChoice);
+      }
+      count++;
     });
   })
-
-  let humanScore = 0;
-  let computerScore = 0;
 
   // Function to play the game for 1 round
   function playRound(humanChoice, computerChoice) {
@@ -40,69 +44,52 @@ function playGame() {
     const result = document.querySelector('#results');
     const hScore = document.querySelector("#hScore");
     const cScore = document.querySelector("#cScore");
+    const reset = document.createElement("button");
+    reset.textContent = "Reset";
 
     let loss = "you loose";
     let win = "you win";
 
-    //  Prints final score
-    if ((humanScore) == 5 || (computerScore) == 5) {
-      if (humanScore == computerScore) {
-        result.textContent = "Its a Tie";
+    if (humanChoice == "rock") {
+      if (computerChoice == "paper") {
+        result.textContent = (`${loss} . ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
       }
-      else if (humanScore > computerScore) {
-        result.textContent = "You win!! Congrats";
-      }
-      else {
-        result.textContent = "You Lose! Try again";
+      else if (computerChoice == "scissors") {
+        result.textContent = (`${win} . ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
       }
     }
-    else {
-      if (humanChoice == computerChoice) {
-        result.textContent = ("Draw");
-        computerScore;
-        humanScore;
-      }
 
-      if (humanChoice == "rock") {
-        if (computerChoice == "paper") {
-          result.textContent = (`${loss} . ${computerChoice} beats ${humanChoice}`);
-          computerScore++;
-        }
-        else if (computerChoice == "scissors") {
-          result.textContent = (`${win} . ${humanChoice} beats ${computerChoice}`);
-          humanScore++;
-        }
+    if (humanChoice == "paper") {
+      if (computerChoice == "rock") {
+        result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
+        humanScore++;
       }
-
-      if (humanChoice == "paper") {
-        if (computerChoice == "rock") {
-          result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
-          humanScore++;
-        }
-        else if (computerChoice == "scissors") {
-          result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
-          computerScore++;
-        }
+      else if (computerChoice == "scissors") {
+        result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
+        computerScore++;
       }
-
-      if (humanChoice == "scissors") {
-        if (computerChoice == "paper") {
-          result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
-          humanScore++;
-        }
-        else if (computerChoice == "rock") {
-          result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
-          computerScore++;
-        }
-      }
-
-      //  Prints the score for each round
-      hScore.textContent = (`Your Score : ${humanScore}`);
-      cScore.textContent = (`Computer's Score : ${computerScore}`);
-      result.appendChild(hScore);
-      result.appendChild(cScore);
     }
+
+    if (humanChoice == "scissors") {
+      if (computerChoice == "paper") {
+        result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+      }
+      else if (computerChoice == "rock") {
+        result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+      }
+    }
+
+    //  Prints the score for each round
+    hScore.textContent = (`Your Score : ${humanScore}`);
+    cScore.textContent = (`Computer's Score : ${computerScore}`);
+    result.appendChild(hScore);
+    result.appendChild(cScore);
   }
+
 }
 
 playGame();
