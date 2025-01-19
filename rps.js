@@ -1,14 +1,17 @@
 
-function playGame() {
+function playRps() {
 
   let humanScore = 0;
   let computerScore = 0;
-  let humanChoice = '';
+  let humanSelection = '';
   let count = 0;
   const result = document.querySelector('#results');
   const hScore = document.querySelector("#hScore");
   const cScore = document.querySelector("#cScore");
-  const body= document.querySelector("body");
+  const body = document.querySelector("body");
+  let loss = "you loose";
+  let win = "you win";
+
 
   //function to randomly generate the computer choices
   function getComputerChoice() {
@@ -30,31 +33,30 @@ function playGame() {
     return choice;
   }
 
+  function playGame() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (count < 5) {
+          humanSelection = button.id;
+          playRound(humanSelection, getComputerChoice());
+        }
+        else {
+          reset();
+        }
+        count++;
+      });
+    })
+  }
 
-  const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      if (count < 5) {
-        humanChoice = button.id;
-        playRound(getComputerChoice(), humanChoice);
-      }
-      else{
-        reset();
-      }
-      count++;
-    });
-  })
 
   // Function to play the game for 1 round
   function playRound(humanChoice, computerChoice) {
 
-    let loss = "you loose";
-    let win = "you win";
-    
     if (humanChoice == computerChoice) {
       result.textContent = ("Draw");
-      computerScore;
-      humanScore;
+      computerScore++;
+      humanScore++;
     }
 
     if (humanChoice == "rock") {
@@ -89,20 +91,24 @@ function playGame() {
         computerScore++;
       }
     }
+    updateScore();
+  }
 
-    //  Prints the score for each round
+  function updateScore() {
+    //Prints the score for each round
     hScore.textContent = (`Your Score : ${humanScore}`);
     cScore.textContent = (`Computer's Score : ${computerScore}`);
     result.appendChild(hScore);
     result.appendChild(cScore);
   }
 
-  function reset(){
+  function reset() {
     result.removeChild(hScore);
     result.removeChild(cScore);
     body.removeChild(result);
   }
 
+  playGame();
 }
 
-playGame();
+playRps();
