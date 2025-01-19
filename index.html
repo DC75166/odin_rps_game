@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="rps.css">
+    <title>Rock Paper Scissors</title>
 </head>
-<body>
-    <button id="rock" value="rock">rock</button>
-    <button id="paper" value="paper">paper</button>
-    <button id="scissors" value="scissors">scissors</button>
-    <div id="results">
-        <p id="text"></p>
-        <p id="hScore"></p>
-        <p id="cScore"></p>
+
+<body id="body">
+    <div id="container">
+        <h1>Play the Game</h1>
+        <div class="btns">
+            <button id="rock" value="rock">rock</button>
+            <button id="paper" value="paper">paper</button>
+            <button id="scissors" value="scissors">scissors</button>
+        </div>
+        <div id="results">
+            <h4>Result</h4>
+            <p id="text"></p>
+            <div id="score">
+                <p id="hScore"></p>
+                <p id="cScore"></p>
+            </div>
+        </div>
     </div>
     <script src="./rps.js"></script>
 </body>
+
 </html>
