@@ -43,15 +43,15 @@ function playRps() {
           humanSelection = button.id;
           playRound(humanSelection, getComputerChoice());
           if (humanScore > computerScore) {
-            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            subText.textContent = (`Computer's Choice : ${computerSelection} Your Choice : ${humanSelection}`);
             text.textContent = (`${win}! ${reload}`);
           }
           else if (computerScore > humanScore) {
-            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            subText.textContent = (`Computer's Choice : ${computerSelection} Your Choice : ${humanSelection}`);
             text.textContent = (`${loss}! ${reload}`);
           }
           else if(humanScore==computerScore) {
-            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            subText.textContent = (`Computer's Choice : ${computerSelection} Your Choice : ${humanSelection}`);
             text.textContent = (`${tie}! ${reload}`);
           }
           updateScore();
