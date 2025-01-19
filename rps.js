@@ -8,7 +8,8 @@ function playRps() {
   const result = document.querySelector('#results');
   const hScore = document.querySelector("#hScore");
   const cScore = document.querySelector("#cScore");
-  const body = document.querySelector("body");
+  // const body = document.querySelector("body");
+  const text = document.querySelector("#text");
   let loss = "you loose";
   let win = "you win";
 
@@ -37,7 +38,24 @@ function playRps() {
     const buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-        if (count < 5) {
+        if (count == 4) {
+          humanSelection = button.id;
+          console.log(humanSelection);
+          playRound(humanSelection, getComputerChoice());
+          if (humanScore > computerScore) {
+            text.textContent = ("You win! Congrats");
+            updateScore();
+          }
+          else if (computerScore > humanScore) {
+            text.textContent = ("Computer Wins! Try again");
+            updateScore();
+          }
+          else {
+            text.textContent = ("Its a tie!");
+            updateScore();
+          }
+        }
+        else if (count < 4) {
           humanSelection = button.id;
           playRound(humanSelection, getComputerChoice());
         }
@@ -54,58 +72,58 @@ function playRps() {
   function playRound(humanChoice, computerChoice) {
 
     if (humanChoice == computerChoice) {
-      result.textContent = ("Draw");
+      text.textContent = ("Draw");
       computerScore++;
       humanScore++;
     }
 
     if (humanChoice == "rock") {
       if (computerChoice == "paper") {
-        result.textContent = (`${loss} . ${computerChoice} beats ${humanChoice}`);
+        text.textContent = (`${loss} . ${computerChoice} beats ${humanChoice}`);
         computerScore++;
       }
       else if (computerChoice == "scissors") {
-        result.textContent = (`${win} . ${humanChoice} beats ${computerChoice}`);
+        text.textContent = (`${win} . ${humanChoice} beats ${computerChoice}`);
         humanScore++;
       }
     }
 
     if (humanChoice == "paper") {
       if (computerChoice == "rock") {
-        result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
+        text.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
         humanScore++;
       }
       else if (computerChoice == "scissors") {
-        result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
+        text.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
         computerScore++;
       }
     }
 
     if (humanChoice == "scissors") {
       if (computerChoice == "paper") {
-        result.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
+        text.textContent = (`${win}.${humanChoice} beats ${computerChoice}`);
         humanScore++;
       }
       else if (computerChoice == "rock") {
-        result.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
+        text.textContent = (`${loss}.${computerChoice} beats ${humanChoice}`);
         computerScore++;
       }
     }
     updateScore();
   }
 
+  //Prints the score for each round
   function updateScore() {
-    //Prints the score for each round
     hScore.textContent = (`Your Score : ${humanScore}`);
     cScore.textContent = (`Computer's Score : ${computerScore}`);
-    result.appendChild(hScore);
-    result.appendChild(cScore);
+    text.appendChild(hScore);
+    text.appendChild(cScore);
   }
 
   function reset() {
-    result.removeChild(hScore);
-    result.removeChild(cScore);
-    body.removeChild(result);
+    result.removeChild(text);
+    text.textContent = ("End of Game!Reload to play again");
+    result.appendChild(text);
   }
 
   playGame();
