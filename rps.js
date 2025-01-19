@@ -10,9 +10,12 @@ function playRps() {
   const hScore = document.querySelector("#hScore");
   const cScore = document.querySelector("#cScore");
   const text = document.querySelector("#text");
+  const subText = document.querySelector('#txt');
   const buttons = document.querySelectorAll("button");
   let loss = "You loose";
   let win = "You win";
+  let tie = "Its a Tie";
+  let reload = "Reload to play Again";
 
 
   //function to randomly generate the computer choices
@@ -40,13 +43,16 @@ function playRps() {
           humanSelection = button.id;
           playRound(humanSelection, getComputerChoice());
           if (humanScore > computerScore) {
-            text.textContent = ("You win! Congrats");
+            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            text.textContent = (`${win}! ${reload}`);
           }
           else if (computerScore > humanScore) {
-            text.textContent = ("Computer Wins! Try again");
+            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            text.textContent = (`${loss}! ${reload}`);
           }
-          else {
-            text.textContent = ("Its a tie!");
+          else if(humanScore==computerScore) {
+            subText.textContent = (`Computer Choice : ${computerSelection} Human Choice : ${humanSelection}`);
+            text.textContent = (`${tie}! ${reload}`);
           }
           updateScore();
         }
@@ -67,7 +73,7 @@ function playRps() {
   function playRound(humanChoice, computerChoice) {
 
     if (humanChoice == computerChoice) {
-      text.textContent = ( `Draw, Computer Choice : ${computerChoice} Human Choice : ${humanChoice}`);
+      text.textContent = ( `${tie}, Both Choice : ${computerChoice}`);
       computerScore++;
       humanScore++;
     }
@@ -104,6 +110,7 @@ function playRps() {
         computerScore++;
       }
     }
+    updateScore();
   }
 
   //Function to Print the score for each round
@@ -117,7 +124,8 @@ function playRps() {
   //Function to reset the game after 5 rounds  
   function reset() {
     result.removeChild(text);
-    text.textContent = ("End of Game! Reload to play again");
+    result.removeChild(subText);
+    text.textContent = (`End of Game! ${reload}`);
     result.appendChild(text);
   }
 

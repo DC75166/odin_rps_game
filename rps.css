@@ -30,10 +30,14 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     padding:60px 20px;
+    font-weight: 400;
+    color:brown;
 }
 #text{
-    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
